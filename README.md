@@ -22,16 +22,68 @@ La mala cálida del software siempre la terminará pagado o asumiendo alguien: c
 
 **Clean Code:** es aquel código que se ha escrito con la intención de que otra persona (o tú mismo en el futuro) lo entienda.
 
-- Nuestras variables deben nombres (comúnmente en inglés) pronunciables y expresivos.
+- Nuestras variables deben nombres (comúnmente en inglés) pronunciables y expresivos (debería explicarse por sí sola).
 
-❌ `const ddmmyy = new Date()`  
-❌ `const tx = 0.19`  
-✅ `const today = new Date()`  
-✅ `const tax = 0.19`
+  ❌ `const ddmmyy = new Date()`  
+  ❌ `const tx = 0.19`  
+  ✅ `const today = new Date()`  
+  ✅ `const tax = 0.19`
 
 - Ausencia de información técnica en nombres
 
-❌ `class AbstractUser {}`  
-❌ `interface UserInterface {}`  
-✅ `class User {}`  
-✅ `interface User {}`
+  ❌ `class AbstractUser {}`  
+  ❌ `interface UserInterface {}`  
+  ✅ `class User {}`  
+  ✅ `interface User {}`
+
+- Nombres según tipo de datos
+
+  **_Arrays_**:  
+  ❌ `const fruit = ['manzana', 'pera', 'melón']`  
+  ✅ `const fruitNames = ['manzana', 'pera', 'melón']`
+
+  **_Boolean_**:  
+  ❌ `const open = true`  
+  ❌ `const active = false`  
+  ❌ `const items = true`  
+  ✅ `const isOpen = true`  
+  ✅ `const isActive = false`  
+  ✅ `const hasItems = true`
+
+  **_Numbers_**:  
+  ❌ `const cars = 5`  
+  ✅ `const totalOfCards = 5`
+
+  **_Functions_** (sus nombres deben representar acciones mediante un verbo y hacer **unicamente** lo que dice su nombre):  
+  ❌ `sendEmailIfFieldsValid()`  
+  ❌ `createUserIfNotExists()`  
+  ✅ `sendEmail()`  
+  ✅ `createUser()`
+
+  `function sendMail(toWhom: string): boolean {}` -> Parámetro  
+  `sendMail('sebastian@gmail.com')` -> Argumento
+
+  Se recomienda limitar a 3 los parámetros posicionales, en caso de necesitar más parámetros se realiza mediante la desestructuración.
+
+  ❌ `function sendEmail(toWhom: string, from: string, body: string, subject: string, apiKey: string): boolean {}`  
+  ✅ `function sendEmail({ toWhom, from, body, subject, apiKey }: SendEmailOptions): boolean {}`
+
+  Recomandaciones para las funciones:
+
+  - Simplicidad
+  - Tamaño reducido
+  - Funciones de una sola línea sin causar complejidad
+  - Menos de 20 líneas
+  - Evitar el uso de "else"
+  - Priorizar el uso de la condicional ternaria
+
+  **_Class_** (deberían tener nombres formados por un sustantivo):  
+  ❌ `class Manager {}`  
+  ❌ `class Data {}`  
+  ❌ `class Info {}`
+
+  _3 preguntas para determinar un buen nombre para una clase..._
+
+  ¿Qué hace exactamente?  
+  ¿Comó realiza cierta tarea?  
+  ¿Hay algo específico sobre su ubicación?
