@@ -87,3 +87,7 @@ La mala cálida del software siempre la terminará pagado o asumiendo alguien: c
   ¿Qué hace exactamente?  
   ¿Comó realiza cierta tarea?  
   ¿Hay algo específico sobre su ubicación?
+
+## Principio DRY (Don't Repeat Yourself)
+
+Simplemente, es evitar duplicidad en nuestro código. Pero también incluye, simplificar pruebas, centralizar procesos y refactorizaciones.
