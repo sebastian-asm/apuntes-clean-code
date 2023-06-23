@@ -88,6 +88,19 @@ La mala cálida del software siempre la terminará pagado o asumiendo alguien: c
   ¿Comó realiza cierta tarea?  
   ¿Hay algo específico sobre su ubicación?
 
+  _Estructura recomendada para una Clase_
+
+  - Comenzar con lista de propiedades
+    1. Propiedades estáticas
+    2. Propiedades públicas al final
+  - Métodos
+    1. Empezar por los constructores estáticos
+    2. Luego el constructor
+    3. Seguidamente los métodos estáticos
+    4. Métodos privados después
+    5. Resto de métodos e instancias ordenados de mayor a menor importancia
+    6. Getters y Setters al final
+
 ## Principio DRY (Don't Repeat Yourself)
 
 Simplemente, es evitar duplicidad en nuestro código. Pero también incluye, simplificar pruebas, centralizar procesos y refactorizaciones.
