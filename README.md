@@ -104,3 +104,40 @@ La mala cálida del software siempre la terminará pagado o asumiendo alguien: c
 ## Principio DRY (Don't Repeat Yourself)
 
 Simplemente, es evitar duplicidad en nuestro código. Pero también incluye, simplificar pruebas, centralizar procesos y refactorizaciones.
+
+👉 Archivo de ejemplo: `dry.ts`
+
+## Principio de Responsabilidad Única
+
+Cada clase debe tener responsabilidad sobre una sola parte de la funcionalidad proporcionada, ayudando a que el código sea más mantenible y escalable al asegurar que cada función o clase tiene un proposito bien definido.
+
+👉 Archivo de ejemplo: `classes.ts`
+
+## Comentarios en el código
+
+Los comentarios deberían ser la excepción, no la regla. Por esto, nuestro código debe ser lo suficientemente auto explicativo.
+
+Pero cuando nos encontramos con el uso de librerías de terceros, APIs, frameworks, etc., posiblemente será una situaciones en donde escribir un comentario será mucho mejor que dejar una solución compleja o un "hack" sin explicación.
+
+## Uniformidad en el proyecto
+
+Problemas similares, soluciones similares al escribir código.
+
+✅ `const updateProduct = () => {}`  
+✅ `const updateUser = () => {}`  
+❌ `const modifyUser = () => {}`
+
+La uniformidad no solo aplica al código sino también a la estructura de nuestro directorio de trabajo.
+
+✅
+
+```
+-> components/
+--> product-item/
+      product-item.ts
+--> product-list/
+      product-list.html
+      product-list.ts
+```
+
+También, la identación es algo primordial priorizando el estandar de la organización, convenciones del lenguaje y equipo de desarrollo. Simplemente con ver el código debe quedar claro que un bloque pertenece a una clase, función, etc.
