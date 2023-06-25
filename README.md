@@ -141,3 +141,104 @@ La uniformidad no solo aplica al código sino también a la estructura de nuestr
 ```
 
 También, la identación es algo primordial priorizando el estandar de la organización, convenciones del lenguaje y equipo de desarrollo. Simplemente con ver el código debe quedar claro que un bloque pertenece a una clase, función, etc.
+
+## Code Smells - STUPID
+
+El concepto está relacionado a posibles indicios a que algo no esta del todo bien en nuestro código.
+
+- **Singleton**: patrón
+- **Tight Coupling**: alto acoplamiento
+- **Untestability**: código no testeable (unit test)
+- **Premature Optimization**: optimizaciones prematuras
+- **Indescriptive Naming**: nombres poco descriptivos
+- **Duplication**: duplicidad de código, no aplicar el principio DRY
+
+### Singleton
+
+Garantiza una única instancia de la clase a lo largo de toda la aplicación, pero se considera Code Smell porque vive en el contexto global, puede ser modificado por cualquier y en cualquier momento, no es rastreable y es difícil de testear debido a su ubicación.
+
+👉 Archivo de ejemplo: `code-smells/singleton.js`
+
+### Tight Coupling
+
+Lo ideal es tener un bajo acomplamiento y buena cohesión.
+
+_Acoplamiento_: se refiere a cuán relacionadas o independientes son dos clases o módulos entre sí.
+
+- Bajo acoplamiento significa que cambiar algo en una clase no debería afectar a otra.
+- Tener un alto acoplamiento dificultaría el cambio y mantenimiento de su código, dado que las clases estan muy unidas, y hacer un cambio podría requerir una renovación completa del sistema.
+
+Tener un alto acoplamiento trae las siguientes desventajas:
+
+- Un cambio en un módulo por lo general provoca un efecto dominó de cambios en otros módulos.
+- El ensamblaje de módulos puede requerir más esfuerzo y/o tiempo debido a mayor dependencia de otros módulos.
+- Un módulo en particular puede ser más difícil de reutilizar y/o probar porque se debe incluir módulos dependientes.
+
+_Cohesión_: se refiere a lo que la clase (o módulo) puede hacer.
+
+- La baja cohesión significa que la clase realiza una gran variedad de acciones: es amplia, no se enfoca en lo que debe hacer.
+- Alta cohesión significa que la clase se enfoca en lo que debería estar haciendo, es decir, solo métodos relacionados con la intención de la clase.
+
+> "Queremos diseñar componentes que sean autocontenidos, autosuficientes e independientes. Con un objetivo y proposito bien definido"
+
+👉 Archivo de ejemplo: `code-smells/high-coupling.ts`  
+👉 Archivo de ejemplo: `code-smells/low-coupling.ts`
+
+### Untestability
+
+Debemos tener en mente las pruebas desde la creación del código, pero debido a las siguientes razones se puede convertir en algo dificilmente testeable por:
+
+- Tener alto acoplamiento
+- Muchas dependencias no inyectadas
+- Dependencias en el contexto globl (tipo Singleton)
+
+### Premature Optimization
+
+Mantener abiertas las opciones retrasando la toma de decisiones nos permite darle mayor relevancia a lo que es más importante en una aplicación (o sea, a las reglas de negocio).
+
+No debemos ancitiparnos a los requisitos y desarrollar abstracciones innecesarias que puedan añadir complejidad accidental.
+
+- **Complejidad accidental**: cuando implementamos una solución compleja a la mínima indispensable.
+- **Complejidad esencial**: la complejidad es inherente al problema.
+
+Hay que tratar de mantener un balance entre ambos formas de complejidad.
+
+### Indescriptive Naming
+
+- Nombre de variables y funciones mal nombradas
+- Nombres de clases genéricas
+- Ser muy especificos (quizás muy largo) o demasiados genéricos al nombrarlas
+
+### Duplication
+
+Existen 2 formas de duplicidad:
+
+- **Real**
+  - El código es idéntico y cumple la misma función
+  - Un cambio implicaría actualizar todo el código idéntico en varios lugares
+  - Incrementa posibilidades de error humano al olvidar una parte para actualizar
+  - Mayor cantidad de pruebas innecesarias
+- **Accidental**
+  - El código luce similar pero cumple distintas funciones
+  - Cuando hay un cambio, sólo hay que modificar un sólo lugar
+  - Este tipo de duplicidad se puede trabajar con parámetros u optimizaciones
+
+### Otros Code Smells
+
+**Inflación**: cuando un método o clase contiene demasiadas líneas de códigos nos deberia hacer pensar en la "existencia" del mismo o hacerlo mucho más pequeño. Se puede solucionar creando pequeños submetódos que hagan una tarea específica y la haga bien.
+
+**Obseción primitiva**: uso excesivo de tipos de datos primitivos en vez de objetos pequeños para tareas simples. Si notamos que tenemos una gran cantidad de variables con tipos primitivos, quizás se podrían agrupar de manera lógica en su propia clase, función, método u objeto.
+
+**Lista larga de parámetros**: esto implica comenzar a tener más de 3 o 4 argumentos en un método. En este caso es necesario comprobar si todos esos argumentos son requeridos, o también, se puede crear un objeto o un tipo especial de dato para agruparlos y recibirlos en esa función.
+
+_Grupo de acopladores_
+
+**Feature envy**: un método accede a los datos de otro objeto más que a sus propios datos.
+
+**Intimidad inapropiada**: cuando una clase usa métodos de otra clase, pero las "buenas" clases deben saber lo menos posible de otras.
+
+**Cadenas de mensajes**: cuando una función A llama a B, C y D lo cual generaría problemas al agregar nuevas piezas a ese canal de comunicación.
+
+**The middle man**: si una clase realiza solo una acción y esa acción es delegada a otra clase, en ese caso, habría que analizar porque existe esa clase. No deberiamos tener más funciones de las necesarias en nuestro código.
+
+👉 Más información: [Refactoring Guru](https://refactoring.guru/)
