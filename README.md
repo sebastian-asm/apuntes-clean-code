@@ -242,3 +242,80 @@ _Grupo de acopladores_
 **The middle man**: si una clase realiza solo una acción y esa acción es delegada a otra clase, en ese caso, habría que analizar porque existe esa clase. No deberiamos tener más funciones de las necesarias en nuestro código.
 
 👉 Más información: [Refactoring Guru](https://refactoring.guru/)
+
+## Principios SOLID
+
+Estos principios (recomendaciones o sugerencias para escribir código de mejor calidad) nos indican cómo organizar nuestras funciones y estructuras de datos en componentes y cómo dichos componentes deben estar interconectados.
+
+- S: Single Responsibility Principle (SRP)
+- O: Open/Closed Principle (OCP)
+- L: Liskov Substitution Principle (LSP)
+- I: Interface Segregation Principle (ISP)
+- D: Dependency Inversion Principle (DIP)
+
+### S: Responsabilidad Única (SRP)
+
+Una clase debería tener una unica responsabilidad, de lo contrario, nuestro código podría ser más rígido, difícil de leer y menos tolerante al cambio.
+
+Como detectar violaciones a este principio:
+
+- Nombres de clases y módulos demasiados genéricos
+- Cambios en el código puede afectar la clase o módulo
+- La clase involucra múltiples capaz
+- Número elevado de importaciones
+- Cantidad elevada de métodos públicos
+- Excesivo número de líneas de código
+
+👉 Archivo de ejemplo: `solid/srp.ts`
+
+### O: Abierto y Cerrado (OCP)
+
+Establece que las entidades de software (clases, módulos, métodos, etc.) deben estar abiertas para la extensión, pero cerradas a la modificación. También se puede lograr incluso mediante el uso de la herencia o patrones de diseño de composición, como el patrón de estrategia.
+
+Como detectar violaciones a este principio:
+
+- Los cambios constantemente afectan nuestras clases y/o módulos
+- Cuando una clase o módulo afecta muchas capas (presentación, almacenamiento, etc.)
+
+👉 Archivo de ejemplo: `solid/ocp.ts`
+
+### L: Sustitución de Liskov (LSP)
+
+> Siendo "U" un subtipo de "T", cualquier instancia de "T" debería poder ser sustituida por cualquier instancia de "U" sin alterar las propiedades del sistema.
+
+Esto nos indica que deberiamos tener clases o métodos que puedan recibir como argumentos subclases de él mismo y no tener modificaciones.
+
+👉 Archivo de ejemplo: `solid/lsp.ts`
+
+### I: Segregación de Interfaz (ISP)
+
+Este principio establece que los clientes no deberían verse forzados a depender de interfaces que no usan, esto quiere decir que las clases no deben verse obligadas a utilizar métodos que vienen siendo heredados por el padre si ese método no lo necesita o usa.
+
+Como detectar violaciones a este principio:
+
+- Si las interfaces que diseñamos nos obligan a violar el principio de responsabilidad única y sustitución de Liskov
+
+👉 Archivo de ejemplo: `solid/isp.ts`
+
+### D: Inversión de Dependencias (DIP)
+
+Dependencia, significa que un módulo o componente requiere de otro para poder realizar su trabajo.
+
+- Los módulos de alto nivel no deberían depender de módulos de bajo nivel
+- Ambos deberían depender de abstracciones (las abstracciones dictan como deben lucir las clases de las cuales extiende)
+- Las abstracciones no deberían depender de detalles
+- Los detalles deberían depender de abstracciones
+
+Los componentes más importantes son aquellos centrados en resolver el problema subyacente al negocio, es decir, la capa de dominio.
+
+Los menos importantes son los que están próximos a la infraestructura, es decir, aquellos relacionados con la UI, la persistencia, la comunicación con APIs externas, etc.
+
+Uno de los motivos más importantes por el cual las reglas de negocio o capa de dominio deben depender de abstracciones y no de concreciones, es que aumenta su tolerancia al cambio.
+
+Cada cambio en un componente abstracto implica un cambio en su implementación.
+
+Por el contrario, los cambios en implementaciones concretas, la mayoría de las veces, no requieren de cambios en las interfaces que implementa.
+
+En algún momento nuestra App llegará a estar formada por muchos módulos. Cuando esto pase, es cuando debemos usar la inyección de dependencias.
+
+👉 Archivo de ejemplo: `solid/dip/index.ts`
